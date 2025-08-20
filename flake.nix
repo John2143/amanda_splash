@@ -36,7 +36,7 @@
         };
 
         packages.container = pkgs.dockerTools.buildLayeredImage {
-          name = "openfrontpro";
+          name = "webserver-container";
           contents = [
             packages.webserver
             pkgs.python3
