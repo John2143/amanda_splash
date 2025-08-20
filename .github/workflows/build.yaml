@@ -40,9 +40,4 @@ jobs:
           echo "Result path: $RESULT"
           IMAGE_TAG=$(date +%Y%m%d_%H%M)
           skopeo copy docker-archive://$RESULT docker://${{ env.registry }}/${{ env.repo }}:amandasplash-${IMAGE_TAG}
-          # if not pull request, then also push as latest
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
-            skopeo copy docker-archive://$RESULT docker://${{ env.registry }}/${{ env.repo }}:amandasplash-branch-${{ github.head_ref }}
-          else
-            skopeo copy docker-archive://$RESULT docker://${{ env.registry }}/${{ env.repo }}:amandasplash-latest
-          fi
+          skopeo copy docker-archive://$RESULT docker://${{ env.registry }}/${{ env.repo }}:amandasplash-latest
